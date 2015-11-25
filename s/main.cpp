@@ -5,30 +5,59 @@
 //  Created by wx on 15/11/25.
 //  Copyright © 2015年 wx. All rights reserved.
 //
-
 #include <iostream>
 using namespace std;
-#define PI 3.1415926
-class Circle
+class Matrix
 {
-public:
-    Circle()
-    {};
-    Circle(double r)
-    {
-        Radius=r;
-    }
-    double GetArea()
-    {
-        return PI*Radius*Radius;
-    }
-private:
-    double Radius;
+    public:
+    Matrix();
+    friend Matrix operator+(Matrix &,Matrix &);
+    void input();
+    void display();
+    private:
+    int mat[2][3];
 };
-
+Matrix::Matrix()
+{
+    for(int i=0;i<2;i++)
+    for(int j=0;j<3;j++)
+        mat[i][j]=0;
+}
+Matrix operator+(Matrix &a,Matrix &b)
+{
+    Matrix c;
+    for(int i=0;i<2;i++)
+    for(int j=0;j<3;j++)
+    {c.mat[i][j]=a.mat[i][j]+b.mat[i][j];}
+    return c;
+}
+void Matrix::input()
+{
+    cout<<"input value of matrix:"<<endl;
+    for(int i=0;i<2;i++)
+        for(int j=0;j<3;j++)
+            cin>>mat[i][j];
+}
+void Matrix::display()
+{
+    for (int i=0;i<2;i++)
+        {
+            for(int j=0;j<3;j++)
+                {cout<<mat[i][j]<<" ";}
+            cout<<endl;
+        }
+}
 int main()
 {
-    Circle c(2);
-    cout<<"这个圆的面积是："<<c.GetArea()<<endl;
+    Matrix a,b,c;
+    a.input();
+    b.input();
+    cout<<endl<<"Matrix a:"<<endl;
+    a.display();
+    cout<<endl<<"Matrix b:"<<endl;
+    b.display();
+    c=a+b;                                         
+    cout<<endl<<"Matrix c = Matrix a + Matrix b :"<<endl;
+    c.display();
     return 0;
 }
