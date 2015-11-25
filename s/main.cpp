@@ -7,9 +7,28 @@
 //
 
 #include <iostream>
+using namespace std;
+#define PI 3.1415926
+class Circle
+{
+public:
+    Circle()
+    {};
+    Circle(double r)
+    {
+        Radius=r;
+    }
+    double GetArea()
+    {
+        return PI*Radius*Radius;
+    }
+private:
+    double Radius;
+};
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+int main()
+{
+    Circle c(2);
+    cout<<"这个圆的面积是："<<c.GetArea()<<endl;
     return 0;
 }
